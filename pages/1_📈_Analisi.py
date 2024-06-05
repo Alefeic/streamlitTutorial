@@ -56,8 +56,32 @@ def create_tab_staff(tab_staff):
     vp_sales = execute_query(st.session_state["connection"], vp_sales_query).mappings().first()
 
     col1, col2, col3 = tab_staff.columns(3)
-    col1.markdown(f"#### :blue[PRESIDENT:] {president['firstName']} {president["lastName"]}")
+    col1.markdown(f"#### :blue[PRESIDENT:] {president['firstName']} {president['lastName']}")
     col3.markdown(f"#### :orange[VP SALES:] {vp_sales['firstName']} {vp_sales['lastName']}")
+
+    #ordine non presente nel bar chart
+    staff_query = "select jobTitle, COUNT(*) as numDipendenti from employees group by jobTitle order by 'numDipendenti' DESC;"
+    staff = execute_query(st.session_state["connection"], staff_query)
+    df_staff = pd.DataFrame(staff)
+    tab_staff.markdown("### Componenti Staff")
+    #specificare quali colonne del dataframe devono essere l'asse x o y
+    tab_staff.bar_chart(df_staff, x='jobTitle', y='numDipendenti', use_container_width=True)
+
+
+def create_tab_clienti(tab_clienti):
+    col1, col2 = tab_clienti.columns(2)
+    query = "select COUNT(*) as 'numeroClienti', country from customers group by country order by 'numeroClienti' DESC;"
+    result = execute_query(st.session_state["connection"], query)
+    df_clienti = pd.DataFrame(result)
+    col1.subheader("Distribuzione clienti nel mondo")
+    #impostare un'altezza uguale per i vari elementi può rendere il risultato più curato
+    col1.dataframe(df_clienti, use_container_width=True, height=350)
+
+    query = "Select customername, state, creditLimit from customers where country = 'USA' and creditLimit > 100000 order by creditLimit DESC;"
+    result = execute_query(st.session_state["connection"], query)
+    df = pd.DataFrame(result)
+    col2.subheader("Clienti con maggior *credit limit* negli USA")
+    col2.dataframe(df, use_container_width=True, height=350)
 
 
 if __name__ == "__main__":
@@ -67,3 +91,5 @@ if __name__ == "__main__":
     tab_prodotti,tab_staff,tab_clienti=st.tabs(["Prodotti","Staff","Clienti"])
     if check_connection():
         create_tab_prodotti(tab_prodotti)
+        create_tab_staff(tab_staff)
+        create_tab_clienti(tab_clienti)
