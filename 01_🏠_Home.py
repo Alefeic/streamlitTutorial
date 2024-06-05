@@ -19,4 +19,4 @@ if __name__ == "__main__":
     col1,col2=st.columns([3,2])
     with col1:
         st.title(":red[Live Coding] Session")
-  
+        st.markdown("## Corso di :blue[Basi di dati]")
