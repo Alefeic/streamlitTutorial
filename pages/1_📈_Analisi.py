@@ -47,8 +47,17 @@ def create_tab_prodotti(tab_prodotti):
             st.line_chart(df_paymentDate, x="paymentDate", y="Total Amount")
 
 
-#def create_tab_staff(tab_staff):
-    #al minuto 1:41:00
+def create_tab_staff(tab_staff):
+    #si può usare mappings() e first() (aspettandoci una sola tupla) per ottenere i dati desiderati dal risultato della query
+    #trovare nome e cognome del presidente e del VP sales
+    president_query= "select lastName, firstName from employees where jobTitle='President'"
+    president = execute_query(st.session_state["connection"], president_query).mappings().first()
+    vp_sales_query = "select lastName, firstName from employees where jobTitle='VP Sales'"
+    vp_sales = execute_query(st.session_state["connection"], vp_sales_query).mappings().first()
+
+    col1, col2, col3 = tab_staff.columns(3)
+    col1.markdown(f"#### :blue[PRESIDENT:] {president['firstName']} {president["lastName"]}")
+    col3.markdown(f"#### :orange[VP SALES:] {vp_sales['firstName']} {vp_sales['lastName']}")
 
 
 if __name__ == "__main__":
