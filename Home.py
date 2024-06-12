@@ -23,8 +23,8 @@ if __name__ == "__main__":
     with col1:
         st.title("Laboratorio :red[4]")
         st.markdown("## Costruito da :blue[Tortoroglio Alessio]")
-        st.markdown("#### In questo laboratorio l'obiettivo è di")
-        st.write("Per iniziare connettiti al database premendo sul pulsante qui sul lato :violet[sinistro]")
+        st.markdown("#### In questo laboratorio l'obiettivo è di andare ad agire su un database, sia recuperando dati tramite specifiche query sia tramite aggiungendo nuove righe :star:")
+        st.write(":arrow_left: Per iniziare connettiti al database premendo sul pulsante qui sul lato :violet[sinistro].")
 
     if check_connection():
         

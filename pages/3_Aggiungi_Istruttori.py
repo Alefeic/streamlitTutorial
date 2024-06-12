@@ -18,7 +18,6 @@ def insert(ist_dict):
         attributi = ", ".join(ist_dict.keys())
         valori = tuple(ist_dict.values())
         query = f"insert into Istruttore ({attributi}) values {valori};"
-        #try_except per verificare che l'operazione MySQL abbia avuto successo, generare un errore altrimenti
         try:
             execute_query(st.session_state["connection"], query)
             st.session_state["connection"].commit()
@@ -32,7 +31,7 @@ def insert(ist_dict):
 
 def create_form():
     with st.form("Nuovo istruttore"):
-        st.header("Aggiungi istruttore")
+        st.header("Aggiungi :violet[istruttore]:")
 
         code = st.text_input("Codice fiscale", placeholder = "Inserisci codice fiscale")
         nome = st.text_input("Nome", placeholder = "Inserisci nome istruttore")
@@ -40,9 +39,9 @@ def create_form():
         valore = datetime.date(2019, 7, 6)
         mindate = datetime.date(1900, 1, 1)
         maxdate = datetime.datetime.today()
-        datanascita = st.date_input("Data di nascita", valore, min_value=mindate, max_value=maxdate)
+        datanascita = st.date_input("Data di nascita :date:", valore, min_value=mindate, max_value=maxdate)
         email = st.text_input("Email", placeholder="mario.rossi@gmail.com")
-        telefono = st.text_input("Numero di telefono", placeholder="Inserisci numero di telefono (opzionale)") 
+        telefono = st.text_input("Numero di telefono :phone:", placeholder="Inserisci numero di telefono (opzionale)") 
 
         submitted = st.form_submit_button("Salva", type = 'primary')
         ist_dict = {"CodFisc": code, "Nome": nome, "Cognome": cognome, "DataNascita": datanascita.strftime("%Y-%m-%D"), "Email": email, "Telefono": telefono}
@@ -56,6 +55,6 @@ def create_form():
 
 if __name__ == "__main__":
     st.title("Inserimento :blue[istruttori]")
-    st.subheader("Puoi :blue[inserire] istruttori completando ciascuna richiesta nel :violet[form]")
+    st.subheader("Puoi :blue[inserire] istruttori completando ciascuna richiesta nel :violet[form] :arrow_down:")
     if check_connection():
         create_form()

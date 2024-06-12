@@ -16,7 +16,7 @@ def get_info():
 
 
 st.title("Visualizzazione :red[corsi]")
-st.subheader("Puoi :blue[filtrare] per varie categorie, sulla :green[destra] vedrai il programma con relativo istruttore dei corsi selezionati.")
+st.subheader("Puoi :blue[filtrare] per varie categorie, sulla :green[destra] :arrow_right: vedrai il programma con relativo istruttore dei corsi selezionati.")
 
 if "connection" not in st.session_state.keys():
         st.session_state["connection"] = False
@@ -32,13 +32,13 @@ if check_connection():
     col2.metric("Numero di :green[tipi] totale", f"{compact_format(tipi_info_dict[0]['Numero di tipi'])}")
 
 
-    with col1.expander("Visualizza corsi", True):
+    with col1.expander("Visualizza :blue[corsi] :eyes:", True):
         query = "SELECT CodC as 'Codice', Nome AS 'Nome', Tipo AS 'Tipo', Livello AS 'Livello' FROM Corsi"
         corsi_col1, corsi_col2 = st.columns([3, 3])
         sort_param = corsi_col1.radio("Ordina per: ", ['Codice', 'Nome', 'Tipo', 'Livello'])
         sort_choice = corsi_col2.selectbox("Ordine: ", ['Crescente', 'Decrescente'])
         sort_dict={'Crescente': 'ASC', 'Decrescente': 'DESC'}
-        filter = corsi_col1.multiselect("Filtra per:", ['Codice', 'Nome', 'Tipo', 'Livello'])
+        filter = st.multiselect("Filtra per (puoi scegliere più categorie):", ['Codice', 'Nome', 'Tipo', 'Livello'])
 
         query += " WHERE 1=1"
         Codice, Nome, Tipo, Livello = get_info()
@@ -64,7 +64,7 @@ if check_connection():
             st.dataframe(df_corsi, use_container_width=True)
 
 
-    with col2.expander("Dettagli:", True):
+    with col2.expander("Dettagli :mag::", True):
         if not df_corsi.empty:
             codc_list = df_corsi['Codice'].tolist()
             codc_str = ','.join([f"'{codc}'" for codc in codc_list])
@@ -72,8 +72,8 @@ if check_connection():
             vedi = execute_query(st.session_state["connection"], query2)
             df_vedi = pd.DataFrame(vedi)
             if df_vedi.empty:
-                st.error("Programma assente")
+                st.error("Programma assente :x:")
             else:
                 st.dataframe(df_vedi, use_container_width=True)
         else:
-            st.error("Corso inesistente")
+            st.error("Corso inesistente :x:")

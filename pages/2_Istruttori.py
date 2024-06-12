@@ -17,7 +17,7 @@ def get_info2():
 
 
 st.title("Visualizzazione :blue[istruttori]")
-st.subheader("Puoi :blue[filtrare] per varie categorie, :violet[sotto] vedrai i risultati.")
+st.subheader("Puoi :blue[filtrare] per varie categorie, :violet[sotto] :arrow_down: vedrai i risultati.")
 
 if "connection" not in st.session_state.keys():
         st.session_state["connection"] = False
@@ -53,10 +53,10 @@ if check_connection():
         istruttori = execute_query(st.session_state["connection"], query)
         df_istruttori = pd.DataFrame(istruttori)
         if df_istruttori.empty:
-            st.error("Istruttore inesistente")
+            st.error("Istruttore inesistente :x:")
         else:
             for idx, row in df_istruttori.iterrows():
-                st.write(f"### Istruttore :red[{idx + 1}] :sunglasses:")
+                st.write(f"### Istruttore :red[{idx + 1}] :white_check_mark:")
                 st.markdown(
                     f"""
                     <div style="background-color: #000010; padding: 10px; border-radius: 5px;">
