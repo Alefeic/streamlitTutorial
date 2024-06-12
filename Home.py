@@ -24,7 +24,7 @@ if __name__ == "__main__":
         st.title("Laboratorio :red[4]")
         st.markdown("## Costruito da :blue[Tortoroglio Alessio]")
         st.markdown("#### In questo laboratorio l'obiettivo è di")
-        st.write("Per iniziare connettiti al database premendo sul pulsante qui sul lato :violet[destro]")
+        st.write("Per iniziare connettiti al database premendo sul pulsante qui sul lato :violet[sinistro]")
 
     if check_connection():
         

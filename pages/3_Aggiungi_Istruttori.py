@@ -56,6 +56,6 @@ def create_form():
 
 if __name__ == "__main__":
     st.title("Inserimento :blue[istruttori]")
-    st.subheader("Puoi :blue[inserire] istruttori completanto ciascuna richiesta nel :violet[form]")
+    st.subheader("Puoi :blue[inserire] istruttori completando ciascuna richiesta nel :violet[form]")
     if check_connection():
         create_form()
