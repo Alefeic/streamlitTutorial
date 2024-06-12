@@ -17,7 +17,7 @@ def get_info2():
 
 
 st.title("Visualizzazione :blue[istruttori]")
-st.subheader("Puoi :blue[filtrare] per varie categorie, sulla :green[destra] vedrai gli istruttori selezionati.")
+st.subheader("Puoi :blue[filtrare] per varie categorie, :violet[sotto] vedrai i risultati.")
 
 if "connection" not in st.session_state.keys():
         st.session_state["connection"] = False
