@@ -22,10 +22,10 @@ def check_connection():
             st.session_state["connection"] = myconnection
         else:
             st.session_state["connection"] = False
-            st.sidebar.error("Errore connessione")
+            st.sidebar.error("Errore connessione :x:")
 
     if st.session_state["connection"]:
-        st.sidebar.success("Connesso al db")
+        st.sidebar.success("Connesso al db :white_check_mark:")
         return True
     
 
