@@ -48,12 +48,23 @@ def create_form():
 
         if submitted:
             if insert(ist_dict):
-                st.success("Hai inserito un nuovo prodotto")
+                st.success("Hai inserito un nuovo prodotto :white_check_mark:")
             else:
-                st.error("Errore di inserimento")
+                st.error("Errore di inserimento :x:")
 
 
 if __name__ == "__main__":
+    st.set_page_config(
+        page_title="Laboratorio 4",
+        page_icon=':muscle:',
+        layout="wide",
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://dbdmg.polito.it/',
+            'Report a bug': "https://dbdmg.polito.it/",
+            'About': "# Corso di *Basi di Dati*, laboratorio 4 di :red[Tortoroglio Alessio]"
+        }
+    )
     st.title("Inserimento :blue[istruttori]")
     st.subheader("Puoi :blue[inserire] istruttori completando ciascuna richiesta nel :violet[form] :arrow_down:")
     if check_connection():

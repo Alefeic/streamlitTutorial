@@ -7,6 +7,7 @@ import pymysql,cryptography
 if __name__ == "__main__":
     st.set_page_config(
         page_title="Laboratorio 4",
+        page_icon=':muscle:',
         layout="wide",
         initial_sidebar_state="expanded",
         menu_items={

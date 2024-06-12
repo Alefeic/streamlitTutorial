@@ -14,7 +14,17 @@ def get_list(attributo):
 def get_info():
     return get_list("CodC"), get_list("Nome"), get_list("Tipo"), get_list("Livello")
 
-
+st.set_page_config(
+        page_title="Laboratorio 4",
+        page_icon=':muscle:',
+        layout="wide",
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://dbdmg.polito.it/',
+            'Report a bug': "https://dbdmg.polito.it/",
+            'About': "# Corso di *Basi di Dati*, laboratorio 4 di :red[Tortoroglio Alessio]"
+        }
+    )
 st.title("Visualizzazione :red[corsi]")
 st.subheader("Puoi :blue[filtrare] per varie categorie, sulla :green[destra] :arrow_right: vedrai il programma con relativo istruttore dei corsi selezionati.")
 
@@ -59,7 +69,7 @@ if check_connection():
         corsi = execute_query(st.session_state["connection"], query)
         df_corsi = pd.DataFrame(corsi)
         if df_corsi.empty:
-            st.error("Corso inesistente")
+            st.error("Corso inesistente :x:")
         else:
             st.dataframe(df_corsi, use_container_width=True)
 

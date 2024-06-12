@@ -15,7 +15,17 @@ def get_list(attributo):
 def get_info2():
     return get_list("Cognome"), get_list("DataNascita")
 
-
+st.set_page_config(
+        page_title="Laboratorio 4",
+        page_icon=':muscle:',
+        layout="wide",
+        initial_sidebar_state="expanded",
+        menu_items={
+            'Get Help': 'https://dbdmg.polito.it/',
+            'Report a bug': "https://dbdmg.polito.it/",
+            'About': "# Corso di *Basi di Dati*, laboratorio 4 di :red[Tortoroglio Alessio]"
+        }
+    )
 st.title("Visualizzazione :blue[istruttori]")
 st.subheader("Puoi :blue[filtrare] per varie categorie, :violet[sotto] :arrow_down: vedrai i risultati.")
 
